@@ -1,0 +1,58 @@
+apiVersion: modules.platform.ottawacloudconsulting.com/v1alpha1
+kind: ContainerWorkflow
+metadata:
+  name: example-project
+  labels:
+    platform.ottawacloudconsulting.com/environment: dev
+spec:
+  parameters:
+    ########################
+    # Base Variables
+    ########################
+    region: ca-central-1
+    accountId: "111111111111"
+    providerConfigRef:
+      aws: my-aws-provider
+      kubernetes: my-kubernetes-provider
+    aws_tags:
+      project: "container-pipeline-project"
+      classification: "unclassified"
+      owner: "firstname.lastname@example.com"
+    ########################
+    # ECR Variables
+    ########################
+    ecr_config:
+      repositoryName: my-api-container
+      policyText: |
+        {
+          "Version": "2008-10-17",
+          "Statement": [
+            {
+              "Sid": "RepositoryPolicy",
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:BatchGetImage",
+                "ecr:CompleteLayerUpload",
+                "ecr:DescribeImageScanFindings",
+                "ecr:GetAuthorizationToken",
+                "ecr:InitiateLayerUpload",
+                "ecr:PutImage",
+                "ecr:StartImageScan",
+                "ecr:UploadLayerPart"
+              ]
+            }
+          ]
+        }
+    ########################
+    # Workflow Variables
+    ########################
+    workflow_config:
+      repository_type: "ado"
+      repository_url: "dev.azure.com/my-org/my-project/_git/my-repo"
+      branch: "main"
+      dockerfile_directory: ""
+      artifact_bucket: my-artifact-bucket
+      git_readonly_token: "my-git-readonly-token"
+      test_image: "python:3.11-slim"

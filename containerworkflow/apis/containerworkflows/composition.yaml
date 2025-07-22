@@ -1,0 +1,19 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: containerworkflows.modules.platform.ottawacloudconsulting.com
+spec:
+  compositeTypeRef:
+    apiVersion: modules.platform.ottawacloudconsulting.com/v1alpha1
+    kind: ContainerWorkflow
+  mode: Pipeline
+  pipeline:
+  - functionRef:
+      name: occ-containerworkflowcontainerworkflow
+    step: containerworkflow
+  - functionRef:
+      name: upbound-function-auto-ready
+    step: upbound-function-auto-ready
+  - functionRef:
+      name: crossplane-contrib-function-auto-ready
+    step: crossplane-contrib-function-auto-ready

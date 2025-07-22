@@ -1,0 +1,76 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: containerworkflows.modules.platform.ottawacloudconsulting.com
+spec:
+  group: modules.platform.ottawacloudconsulting.com
+  names:
+    categories:
+    - crossplane
+    kind: ContainerWorkflow
+    plural: containerworkflows
+  versions:
+  - name: v1alpha1
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        description: ContainerWorkflow is the Schema for the ContainerWorkflow API.
+        properties:
+          spec:
+            description: ContainerWorkflowSpec defines the desired state of ContainerWorkflow.
+            properties:
+              parameters:
+                properties:
+                  accountId:
+                    type: string
+                  aws_tags:
+                    properties:
+                      classification:
+                        type: string
+                      owner:
+                        type: string
+                      project:
+                        type: string
+                    type: object
+                  ecr_config:
+                    properties:
+                      policyText:
+                        type: string
+                      repositoryName:
+                        type: string
+                    type: object
+                  providerConfigRef:
+                    properties:
+                      aws:
+                        type: string
+                      kubernetes:
+                        type: string
+                    type: object
+                  region:
+                    type: string
+                  workflow_config:
+                    properties:
+                      artifact_bucket:
+                        type: string
+                      branch:
+                        type: string
+                      dockerfile_directory:
+                        type: string
+                      git_readonly_token:
+                        type: string
+                      repository_type:
+                        type: string
+                      repository_url:
+                        type: string
+                      test_image:
+                        type: string
+                    type: object
+                type: object
+            type: object
+          status:
+            description: ContainerWorkflowStatus defines the observed state of ContainerWorkflow.
+            type: object
+        required:
+        - spec
+        type: object
+    served: true

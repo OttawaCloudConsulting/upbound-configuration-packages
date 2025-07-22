@@ -1,0 +1,25 @@
+apiVersion: meta.dev.upbound.io/v1alpha1
+kind: Project
+metadata:
+  name: containerworkflow
+spec:
+  dependsOn:
+  - provider: xpkg.upbound.io/upbound/provider-aws-iam
+    version: v1.23.1
+  - provider: xpkg.upbound.io/upbound/provider-aws-ecr
+    version: v1.23.1
+  - provider: xpkg.upbound.io/upbound/provider-aws-s3
+    version: v1.23.1
+  - provider: xpkg.upbound.io/upbound/provider-kubernetes
+    version: v0.18.1
+  - function: xpkg.upbound.io/upbound/function-auto-ready
+    version: v0.5.0
+  - function: xpkg.upbound.io/crossplane-contrib/function-auto-ready
+    version: '>=v0.0.0'
+  description: This is where you can describe your project.
+  license: Apache-2.0
+  maintainer: Upbound User <user@example.com>
+  readme: |
+    This is where you can add a readme for your project.
+  repository: xpkg.upbound.io/occ/containerworkflow
+  source: github.com/upbound/project-template
