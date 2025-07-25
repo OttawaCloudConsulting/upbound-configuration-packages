@@ -18,12 +18,15 @@ spec:
         properties:
           spec:
             description: ContainerWorkflowSpec defines the desired state of ContainerWorkflow.
+            type: object
             properties:
               parameters:
+                type: object
                 properties:
                   accountId:
                     type: string
                   aws_tags:
+                    type: object
                     properties:
                       classification:
                         type: string
@@ -31,24 +34,24 @@ spec:
                         type: string
                       project:
                         type: string
-                    type: object
                   ecr_config:
+                    type: object
                     properties:
                       policyText:
                         type: string
                       repositoryName:
                         type: string
-                    type: object
                   providerConfigRef:
+                    type: object
                     properties:
                       aws:
                         type: string
                       kubernetes:
                         type: string
-                    type: object
                   region:
                     type: string
                   workflow_config:
+                    type: object
                     properties:
                       artifact_bucket:
                         type: string
@@ -64,9 +67,6 @@ spec:
                         type: string
                       test_image:
                         type: string
-                    type: object
-                type: object
-            type: object
           status:
             description: ContainerWorkflowStatus defines the observed state of ContainerWorkflow.
             type: object
